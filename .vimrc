@@ -1,0 +1,13 @@
+" 行番号の表示
+set number
+" 色付け
+syntax on
+" タブをスペース4つ分の大きさにする
+set tabstop=2
+set shiftwidth=2
+" インデントを自動で合わせてくれる
+set autoindent
+" タブをスペースとして扱う
+set expandtab
+" ~.swpファイルを作らない
+set noswapfile
