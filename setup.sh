@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# zsh install
+if [[ ! -e /bin/zsh ]]; then
+  sudo yum install zsh -y
+  chsh -s /bin/zsh
+fi
+
+
 # oh-my-zsh install
 if [[ ! -e $HOME/.oh-my-zsh ]]; then
   curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
@@ -32,3 +39,4 @@ function fileSetUp()
 
 fileSetUp .zshrc
 fileSetUp .vimrc
+fileSetUp .gitconfig
