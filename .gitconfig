@@ -8,7 +8,7 @@
 [diff]
   patience = true
 [user]
-	name = Shota Suzuki
-	email = susho0220@gmail.com
+  name = Shota Suzuki
+  email = susho0220@gmail.com
 [core]
-	editor = vim -c \"set fenc=utf-8\"
+  editor = vim -c \"set fenc=utf-8\"
