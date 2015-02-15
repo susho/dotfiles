@@ -53,6 +53,12 @@ typeset -U path PATH
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# rvm
+if [[ -e "$HOME/.rvm/bin" ]]; then
+  export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+  source ~/.rvm/scripts/rvm
+fi
+
 # golang
 if [[ -x "`which go`" ]]; then
   export GOROOT=`go env GOROOT`
