@@ -40,3 +40,4 @@ function fileSetUp()
 fileSetUp .zshrc
 fileSetUp .vimrc
 fileSetUp .gitconfig
+fileSetUp .tmux
