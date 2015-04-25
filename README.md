@@ -1,3 +1,7 @@
 # dotfiles
 
-$ bash setup.sh
+$ bash ~/dotfiles/setup.sh
+
+$ zsh
+
+$ source .zshrc
