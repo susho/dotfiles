@@ -45,7 +45,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vagrant ruby rails)
+plugins=(git vagrant)
 
 # User configuration
 
@@ -54,16 +54,15 @@ typeset -U path PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # rvm
-if [[ -e "$HOME/.rvm/bin" ]]; then
+if [ -e "$HOME/.rvm/bin" ]; then
   export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
   source ~/.rvm/scripts/rvm
 fi
 
 # golang
-if [[ -x "`which go`" ]]; then
-  export GOROOT=`go env GOROOT`
-  export GOPATH=$HOME/gocode
-  export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
+if [ -e "/usr/local/go" ]; then
+  export GOPATH=$HOME/work
+  export PATH="/usr/local/go/bin:$GOPATH/bin:$PATH"
 fi
 
 export MANPATH="/usr/local/man:$MANPATH"
