@@ -93,3 +93,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# alias vim-go-ide
+alias vimgo="vim -u ~/.vimrc.go"
+
+# alias ctags
+alias ctags="`brew --prefix`/bin/ctags"
