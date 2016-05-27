@@ -1,7 +1,2 @@
-set number
-syntax on
-set tabstop=2
-set shiftwidth=2
-set autoindent
-set expandtab
-set noswapfile
+source ~/.vim/vimrc/basic.vim
+source ~/.vim/vimrc/plugins.vim

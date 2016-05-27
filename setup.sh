@@ -18,30 +18,32 @@ if [ ! -e ~/.vimrc.go ]; then
   sh ~/.vim_go_runtime/bin/install
 fi
 
+# update git submodule
+git submodule init
+git submodule update
+
 # overwrite dotfiles
 function fileSetUp()
 {
     fileName=$1
 
-    if [ ! -e $HOME/${fileName} ]; then
-      echo "ln -s dotfiles/${fileName} $HOME/${fileName}"
-      ln -s dotfiles/${fileName} $HOME/${fileName}
-    else
-      cmp dotfiles/${fileName} $HOME/${fileName} > /dev/null
-      ret=$?
-      if [ ! "$ret" = "0" ]; then
+    srcDir=$HOME/work/src/github.com/susho/dotfiles
+
+    cmp ${srcDir}/${fileName} $HOME/${fileName} > /dev/null
+    ret=$?
+    if [ ! "$ret" = "0" ]; then
         echo "Can I overwrite $HOME/${fileName} ? (yes/no)"
         read ans
         if [ "$ans" = "yes" ]; then
           mv $HOME/${fileName} $HOME/${fileName}.OLD
-          ln -s dotfiles/${fileName} $HOME/${fileName}
+          ln -s ${srcDir}/${fileName} $HOME/${fileName}
           echo "overwrite $HOME/${fileName}"
         fi
-      fi
     fi
 }
 
 fileSetUp .zshrc
 fileSetUp .vimrc
+fileSetUp .vim
 fileSetUp .gitconfig
 fileSetUp .tmux
