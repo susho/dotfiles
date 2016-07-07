@@ -7,15 +7,21 @@ if [ ! -e /bin/zsh ]; then
 fi
 
 
-# install oh-my-zsh
-if [ ! -e $HOME/.oh-my-zsh ]; then
-  curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+# install zprezto
+if [ ! -e ${ZDOTDIR:-$HOME}/.zprezto ]; then
+  FILES=('zlogin' 'zlogout' 'zprofile' 'zshenv')
+  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+
+  setopt EXTENDED_GLOB
+  for rcfile in ${FILES[@]}; do
+    ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+  done
 fi
 
 # install vim-go-ide
-if [ ! -e ~/.vimrc.go ]; then
+if [ ! -e $HOME/.vimrc.go ]; then
   git clone https://github.com/farazdagi/vim-go-ide.git
-  sh ~/.vim_go_runtime/bin/install
+  sh $HOME/.vim_go_runtime/bin/install
 fi
 
 # update git submodule
@@ -23,7 +29,7 @@ git submodule init
 git submodule update
 
 # overwrite dotfiles
-function fileSetUp()
+function setUpDotFiles()
 {
     fileName=$1
 
@@ -42,8 +48,9 @@ function fileSetUp()
     fi
 }
 
-fileSetUp .zshrc
-fileSetUp .vimrc
-fileSetUp .vim
-fileSetUp .gitconfig
-fileSetUp .tmux
+setUpDotFiles .zshrc
+setUpDotFiles .zpreztorc
+setUpDotFiles .vimrc
+setUpDotFiles .vim
+setUpDotFiles .gitconfig
+setUpDotFiles .tmux
