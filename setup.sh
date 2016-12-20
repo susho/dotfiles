@@ -18,12 +18,6 @@ if [ ! -e ${ZDOTDIR:-$HOME}/.zprezto ]; then
   done
 fi
 
-# install vim-go-ide
-if [ ! -e $HOME/.vimrc.go ]; then
-  git clone https://github.com/farazdagi/vim-go-ide.git
-  sh $HOME/.vim_go_runtime/bin/install
-fi
-
 # update git submodule
 git submodule init
 git submodule update
