@@ -4,6 +4,7 @@ source ~/.vim/vimrc/plugins.vim
 call plug#begin()
 Plug 'fatih/vim-go'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'Shougo/neocomplete.vim'
 call plug#end()
 
 " run :GoBuild or :GoTestCompile based on the go file
@@ -47,6 +48,8 @@ let g:go_metalinter_deadline = "5s"
 let g:go_def_mode = 'godef'
 
 let g:go_auto_type_info = 1
+
+let g:neocomplete#enable_at_startup = 1
 
 let mapleader = ","
 
