@@ -1,8 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
 # install zsh
 if [ ! -e /bin/zsh ]; then
-  sudo yum install zsh -y
+  if [ -e /cat/redhat-release ]; then
+    sudo yum install zsh -y
+  else
+    sudo apt-get install zsh -y
+  fi
   chsh -s /bin/zsh
 fi
 
