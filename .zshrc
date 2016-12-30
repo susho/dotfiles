@@ -15,7 +15,9 @@ fi
 alias vimgo="vim -u ~/.vimrc.go"
 
 # alias ctags
-alias ctags="`brew --prefix`/bin/ctags"
+if [ -e /usr/local/bin/brew ]; then
+  alias ctags="`brew --prefix`/bin/ctags"
+fi
 
 setopt share_history
 alias history="history -i"
