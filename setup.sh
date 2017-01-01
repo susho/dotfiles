@@ -2,6 +2,7 @@
 
 # install zsh
 if [ ! -e /bin/zsh ]; then
+  echo "Installing... zsh" 
   if [ -e /cat/redhat-release ]; then
     sudo yum install zsh -y
   else
@@ -13,6 +14,8 @@ fi
 
 # install zprezto
 if [ ! -e ${ZDOTDIR:-$HOME}/.zprezto ]; then
+  echo "Installing... zprezto" 
+
   FILES=('zlogin' 'zlogout' 'zprofile' 'zshenv')
   git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
@@ -22,33 +25,35 @@ if [ ! -e ${ZDOTDIR:-$HOME}/.zprezto ]; then
   done
 fi
 
-# update git submodule
-git submodule init
-git submodule update
+# install vim-plug
+if [ ! -e ~/.vim/autoload/plug.vim ]; then
+  echo "Installing... vim-plug" 
 
-# overwrite dotfiles
-function setUpDotFiles()
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
+# set up a dotfile
+function setup_dotfile()
 {
-    fileName=$1
+  fileName=$1
+  srcDir=$HOME/work/src/github.com/susho/dotfiles
 
-    srcDir=$HOME/work/src/github.com/susho/dotfiles
-
-    cmp ${srcDir}/${fileName} $HOME/${fileName} > /dev/null
-    ret=$?
-    if [ ! "$ret" = "0" ]; then
-        echo "Can I overwrite $HOME/${fileName} ? (yes/no)"
-        read ans
-        if [ "$ans" = "yes" ]; then
-          mv $HOME/${fileName} $HOME/${fileName}.OLD
-          ln -s ${srcDir}/${fileName} $HOME/${fileName}
-          echo "overwrite $HOME/${fileName}"
-        fi
-    fi
+  cmp ${srcDir}/${fileName} $HOME/${fileName} > /dev/null
+  ret=$?
+  if [ ! "$ret" = "0" ]; then
+    echo "Can I overwrite $HOME/${fileName} ? (Y/n)"
+      read ans
+      if [ "$ans" = "Y" ]; then
+        mv $HOME/${fileName} $HOME/${fileName}.OLD
+        ln -s ${srcDir}/${fileName} $HOME/${fileName}
+        echo "overwrite $HOME/${fileName}"
+      fi
+  fi
 }
 
-setUpDotFiles .zshrc
-setUpDotFiles .zpreztorc
-setUpDotFiles .vimrc
-setUpDotFiles .vim
-setUpDotFiles .gitconfig
-setUpDotFiles .tmux
+setup_dotfile .zshrc
+setup_dotfile .zpreztorc
+setup_dotfile .vimrc
+setup_dotfile .gitconfig
+setup_dotfile .tmux.conf

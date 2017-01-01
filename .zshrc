@@ -11,9 +11,6 @@ if [ -e "/usr/local/go" ]; then
   export PATH="/usr/local/go/bin:$GOPATH/bin:$PATH"
 fi
 
-# alias vim-go-ide
-alias vimgo="vim -u ~/.vimrc.go"
-
 # alias ctags
 if [ -e /usr/local/bin/brew ]; then
   alias ctags="`brew --prefix`/bin/ctags"

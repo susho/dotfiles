@@ -1,31 +1,22 @@
-source ~/.vim/vimrc/basic.vim
-source ~/.vim/vimrc/plugins.vim
-
 call plug#begin()
-Plug 'fatih/vim-go'
-Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Shougo/neocomplete.vim'
+Plug 'w0ng/vim-hybrid'
+Plug 'fatih/vim-go'
 call plug#end()
 
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#cmd#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
+let mapleader = ","
 
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
+set autowrite
+set completeopt=menuone
+set laststatus=2
+
+set background=dark
+colorscheme hybrid
 
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
 let g:go_list_type = "quickfix"
@@ -51,7 +42,12 @@ let g:go_auto_type_info = 1
 
 let g:neocomplete#enable_at_startup = 1
 
-let mapleader = ","
-
-set autowrite
-set completeopt=menuone
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#cmd#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
