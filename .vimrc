@@ -1,13 +1,11 @@
 call plug#begin()
 Plug 'Shougo/neocomplete.vim'
-Plug 'soramugi/auto-ctags.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'w0ng/vim-hybrid'
 Plug 'fatih/vim-go'
 call plug#end()
 
 let g:mapleader = ","
-let g:auto_ctags = 1
 
 map <leader>o :NERDTreeToggle<cr>
 
