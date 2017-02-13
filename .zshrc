@@ -28,3 +28,8 @@ fi
 if [ -f /Users/suzukishouta/google-cloud-sdk/completion.zsh.inc ]; then
   source '/Users/suzukishouta/google-cloud-sdk/completion.zsh.inc'
 fi
+
+# kubernetes
+if [ -f /Users/suzukishouta/google-cloud-sdk/bin/kubectl ]; then
+  source <(/Users/suzukishouta/google-cloud-sdk/bin/kubectl completion zsh)
+fi
