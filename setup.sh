@@ -1,17 +1,5 @@
 #!/bin/bash
 
-# install zsh
-if [ ! -e /bin/zsh ]; then
-  echo "Installing... zsh" 
-  if [ -e /cat/redhat-release ]; then
-    sudo yum install zsh -y
-  else
-    sudo apt-get install zsh -y
-  fi
-  chsh -s /bin/zsh
-fi
-
-
 # install zprezto
 if [ ! -e ${ZDOTDIR:-$HOME}/.zprezto ]; then
   echo "Installing... zprezto" 
