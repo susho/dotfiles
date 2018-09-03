@@ -12,3 +12,7 @@
   email = susho0220@gmail.com
 [core]
   editor = vim -c \"set fenc=utf-8\"
+[ghq]
+  root = ~/work/src
+[url "git@github.com:"]
+  insteadOf = https://github.com/
