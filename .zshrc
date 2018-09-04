@@ -3,8 +3,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
-
 # golang
 if [ -e "/usr/local/go" ]; then
   export GOPATH=$HOME/work
@@ -19,17 +17,11 @@ fi
 setopt share_history
 alias history="history -i"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f /Users/suzukishouta/google-cloud-sdk/path.zsh.inc ]; then
-  source '/Users/suzukishouta/google-cloud-sdk/path.zsh.inc'
+if [ -f ~/.ssh-agent ]; then
+    . ~/.ssh-agent
 fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f /Users/suzukishouta/google-cloud-sdk/completion.zsh.inc ]; then
-  source '/Users/suzukishouta/google-cloud-sdk/completion.zsh.inc'
+if [ -z "$SSH_AGENT_PID" ] || ! kill -0 $SSH_AGENT_PID; then
+    ssh-agent > ~/.ssh-agent
+    . ~/.ssh-agent
 fi
-
-# kubernetes
-if [ -f /Users/suzukishouta/google-cloud-sdk/bin/kubectl ]; then
-  source <(/Users/suzukishouta/google-cloud-sdk/bin/kubectl completion zsh)
-fi
+ssh-add -l >& /dev/null || ssh-add
