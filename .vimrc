@@ -8,16 +8,6 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 call plug#end()
 
-
-
-if executable('gopls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-        \ 'whitelist': ['go'],
-        \ })
-endif
-
 let g:mapleader = ","
 
 map <leader>o :NERDTreeToggle<cr>
@@ -46,3 +36,11 @@ let g:go_metalinter_enabled = ['vet', 'golint', 'deadcode', 'varcheck', 'structc
 let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'deadcode']
 let g:go_metalinter_deadline = "5s"
+
+if executable('gopls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+endif
