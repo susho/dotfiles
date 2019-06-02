@@ -23,6 +23,7 @@ syntax on
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
 let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 let g:go_fmt_command = "goimports"
 let g:go_highlight_types = 1
 let g:go_highlight_function_calls = 1
