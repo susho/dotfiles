@@ -21,6 +21,7 @@ colorscheme hybrid
 syntax on
 
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd BufNewFile,BufRead *.{yml,yaml} setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
 
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
